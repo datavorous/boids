@@ -29,10 +29,12 @@ class Simulation {
     }
   }
 
-  step() {
+  step(currentSpeed) {
     this.flock.step();
 
     for (let boid of this.flock.boids) {
+      boid.maxSpeed = CONFIG.maxSpeed * currentSpeed;
+
       boid.update();
       this.wrap(boid);
     }
