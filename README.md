@@ -29,10 +29,9 @@ In order to understand how things work under the hood, read **[EXPLANATION.md](E
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
-2. [Configuration](#configuration)
-3. [How to Contribute](#how-to-contribute)
-4. [Code of Conduct](#code-of-conduct)
-5. [References](#references)
+2. [How to Contribute](#how-to-contribute)
+3. [Code of Conduct](#code-of-conduct)
+4. [References](#references)
 
 ## Quick Start
 
@@ -57,26 +56,6 @@ npx http-server
 
 3. Navigate to `http://localhost:8000` in your browser
 
-## Configuration
-
-Edit `src/config.js` to customize the simulation:
-
-```javascript
-const CONFIG = {
-  boidCount: 130,
-  maxSpeed: 3,
-  maxForce: 0.07,
-  visualRange: 60,
-
-  cohesionWeight: 1.0,
-  alignmentWeight: 1.0,
-  separationWeight: 1.9,
-
-  trailLength: 20,
-  trailEnabled: true,
-};
-```
-
 ## How to Contribute
 
 Please follow [CONTRIBUTING.md](CONTRIBUTING.md) for step-by-step guidance on:
@@ -86,20 +65,6 @@ Please follow [CONTRIBUTING.md](CONTRIBUTING.md) for step-by-step guidance on:
 3. Making improvements and submitting PRs
 4. Code style and best practices
 5. Testing your changes
-
-### Getting Help
-
-1. **Discord**: [Server link]()
-2. **GitHub Discussions**: Ask questions and discuss ideas
-3. **Comment on issues**: Reach out to maintainers directly
-
-### Important Rules
-
-1. Work on **one issue at a time**
-2. Complete assigned issues within a reasonable timeframe (can be extended based on difficulty)
-3. Respect the [Code of Conduct](CODE_OF_CONDUCT.md)
-4. Always link your PR to an issue
-5. Avoid plagiarism or AI-generated content without proper attribution
 
 ## Code of Conduct
 

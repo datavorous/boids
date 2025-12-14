@@ -2,6 +2,7 @@ class Controls {
   constructor() {
     this.vectorsEnabled = false;
     this.simulationSpeed = 0.8;
+    this.maxSpeed = CONFIG.maxSpeed;
 
     this.fps = 0;
     this.frameCount = 0;
@@ -15,6 +16,20 @@ class Controls {
 
   createUI() {
     this.gui.add(this, "vectorsEnabled").name("Show Vectors");
+
+    this.gui
+      .add(this, "maxSpeed", 1, 10, 0.05)
+      .name("Max Speed")
+      .onChange(() => {
+        boids.forEach((boid) => (boid.maxSpeed = this.maxSpeed));
+      });
+
+    /* this.gui
+      .add(this, "maxForce", 0, 5, 0.1)
+      .name("Max Force")
+      .onChange(() => {
+        boids.forEach((boid) => (boid.maxForce = this.maxForce));
+      });*/
 
     this.gui.add(this, "simulationSpeed", 0.1, 3, 0.1).name("Speed");
 

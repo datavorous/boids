@@ -12,6 +12,7 @@ Watch the following videos to see flocking in real life:
 2. [AMAZING Bird Flocks! | BBC Earth Explore](https://www.youtube.com/watch?v=DLuEwFblaN4)
 3. [I Didn't know Birds use Math in Murmurations! - Smarter Every Day 234](https://www.youtube.com/watch?v=4LWmRuB-uNU) [MUST WATCH]
 4. [Coding Adventure: Boids - Sebastian Lague](https://www.youtube.com/watch?v=bqtqltqcQhw)
+5. [Coding Challenge 124: Flocking Simulation - The Coding Train](https://youtu.be/mhjuuHl6qHM?si=E0MJESbHd8gApArA)
 
 ## Architecture Overview
 
@@ -135,8 +136,6 @@ If boid exits top ->> reappear on bottom
 (And clear trail to avoid visual artifacts)
 ```
 
----
-
 ### 5. **CanvasRenderer - `src/render/canvasRenderer.js`**
 
 **Purpose:** Visual representation
@@ -183,21 +182,19 @@ Features:
    - requestAnimationFrame() -> Schedule next frame
 ```
 
----
-
 ## Configuration (`config.js`)
 
 **Tunable Parameters:**
 
-| Parameter          | Effect                    |
-| ------------------ | ------------------------- |
-| `boidCount`        | Number of boids           |
-| `maxSpeed`         | Top speed limit           |
-| `maxForce`         | Steering agility          |
-| `visualRange`      | How far boids can "see"   |
-| `separationWeight` | Personal space priority   |
-| `alignmentWeight`  | Synchronization priority  |
-| `cohesionWeight`   | Group attraction priority |
+| Parameter | Effect |
+| |- |
+| `boidCount` | Number of boids |
+| `maxSpeed` | Top speed limit |
+| `maxForce` | Steering agility |
+| `visualRange` | How far boids can "see" |
+| `separationWeight` | Personal space priority |
+| `alignmentWeight` | Synchronization priority |
+| `cohesionWeight` | Group attraction priority |
 
 **Experiment:** Try `separationWeight: 5` for scattered behavior or `cohesionWeight: 5` for tight flocks!
 
@@ -214,8 +211,6 @@ This section will help you understand how to enhance the simulation, add new fea
 Before making changes, understand how data flows through the system:+
 
 <img src="media/data_flow.png">
-
----
 
 ### Common Modification Patterns
 
@@ -262,8 +257,6 @@ step() {
 
 **Don't forget:** Add `newBehaviorWeight: 1.0` to `config.js`
 
----
-
 #### 2. **Adding a New CONFIG Parameter**
 
 **Step 1:** Add to `config.js`
@@ -291,8 +284,6 @@ createUI() {
 }
 ```
 
----
-
 #### 3. **Adding Properties to Individual Boids**
 
 **Where:** `src/core/boid.js` constructor
@@ -314,8 +305,6 @@ update() {
   this.myProperty += someChange;
 }
 ```
-
----
 
 #### 4. **Adding Visual Effects**
 
@@ -356,8 +345,6 @@ render(controls) {
 }
 ```
 
----
-
 #### 5. **Adding Vector Math Operations**
 
 **Where:** `src/utils/vector.js`
@@ -387,8 +374,6 @@ myVector.myOperation();
 // Static method (creates new vector)
 const result = Vec.myStaticOperation(vec1, vec2);
 ```
-
----
 
 ### Debugging Tips
 
@@ -427,8 +412,6 @@ const force = this.myBehavior(neighbors);
 console.log("Force mag:", Math.sqrt(force.x * force.x + force.y * force.y));
 // Typical range: 0.01 - 0.1
 ```
-
----
 
 ### Performance Considerations
 
@@ -492,8 +475,6 @@ steer.limit(this.maxForce); // Add this!
 **Cause:** Memory leak (array growing indefinitely)
 **Fix:** Ensure arrays have max size (like `trail.length > CONFIG.trailLength`)
 
----
-
 ### Testing Your Changes
 
 #### 1. **Isolation Test**
@@ -536,8 +517,6 @@ function loop() {
 ```
 
 Aim for < 16ms per frame (60 FPS)
-
----
 
 ### Example: Adding a Complete Feature
 
@@ -605,8 +584,6 @@ hungerFolder.add(CONFIG, "starvationThreshold", 0, 100, 5).name("Starve At");
 
 Done! You've added a complete feature.
 
----
-
 ### Getting Help
 
 **Before asking:**
@@ -622,22 +599,18 @@ Done! You've added a complete feature.
 3. Relevant code snippet
 4. Any console errors
 
----
-
 ### Quick Reference: File Responsibilities
 
-| File                | What to edit here                          |
-| ------------------- | ------------------------------------------ |
-| `boid.js`           | Behavior algorithms, boid properties       |
-| `flock.js`          | How forces are applied, force combinations |
-| `simulation.js`     | World boundaries, global rules             |
-| `canvasRenderer.js` | Visual appearance, effects                 |
-| `vectorRenderer.js` | Debug visualizations                       |
-| `controls.js`       | UI controls, user input                    |
-| `vector.js`         | Math operations                            |
-| `config.js`         | Tunable parameters                         |
-| `main.js`           | Initialization, main loop                  |
-
----
+| File | What to edit here |
+|- | |
+| `boid.js` | Behavior algorithms, boid properties |
+| `flock.js` | How forces are applied, force combinations |
+| `simulation.js` | World boundaries, global rules |
+| `canvasRenderer.js` | Visual appearance, effects |
+| `vectorRenderer.js` | Debug visualizations |
+| `controls.js` | UI controls, user input |
+| `vector.js` | Math operations |
+| `config.js` | Tunable parameters |
+| `main.js` | Initialization, main loop |
 
 **Remember:** The best way to learn is to experiment! Try breaking things, see what happens, and piece together why. The simulation is resilient - you can always refresh to reset.
