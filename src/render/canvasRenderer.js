@@ -35,7 +35,13 @@ class CanvasRenderer {
     ctx.fill();
   }
 
-  render(controls) {
+  render(controls) { 
+    
+    window.addEventListener('resize',() =>{
+      this.canvas.width=sim.width=window.innerWidth;
+      this.canvas.height=sim.height=window.innerHeight;
+    })
+      
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     const showVectors = controls ? controls.shouldDrawVectors() : true;
     for (let b of this.flock.boids) this.drawBoid(b, showVectors);
