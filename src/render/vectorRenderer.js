@@ -3,7 +3,7 @@ class VectorRenderer {
     ctx.strokeStyle = "#45475a";
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(boid.position.y, boid.position.x);
+    ctx.moveTo(boid.position.x, boid.position.y);
     ctx.lineTo(
       boid.position.x + boid.velocity.x * scale,
       boid.position.y + boid.velocity.y * scale
