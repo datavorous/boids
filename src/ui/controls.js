@@ -1,7 +1,7 @@
 class Controls {
   constructor() {
     this.vectorsEnabled = false;
-    this.simulationSpeed = 0.8;
+    this.simulationSpeed = 1.0;
     this.maxSpeed = CONFIG.maxSpeed;
 
     this.fps = 0;
@@ -31,7 +31,7 @@ class Controls {
         boids.forEach((boid) => (boid.maxForce = this.maxForce));
       });*/
 
-    this.gui.add(this, "simulationSpeed", 0.1, 3, 0.1).name("Speed");
+    this.gui.add(this, "simulationSpeed", 1.0, 20.0, 1.0).name("Speed");
 
     this.gui.add(this, "fps").name("FPS").listen();
   }
