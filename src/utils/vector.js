@@ -3,6 +3,10 @@ class Vec {
     this.x = x;
     this.y = y;
   }
+  
+  mag() {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
+  }
 
   add(v) {
     this.x += v.x;
