@@ -3,6 +3,10 @@ class Simulation {
     this.flock = flock;
     this.width = width;
     this.height = height;
+
+    const validBehaviors = Object.values(CONFIG.EDGE_BEHAVIORS);
+    if (!validBehaviors.includes(CONFIG.edgeBehavior))
+      console.warn("Unknown edge behavior, Falling back to WRAP");
   }
 
   wrap(boid) {
@@ -61,11 +65,11 @@ class Simulation {
     boid.applyForce(force);
   }
   handleEdges(boid) {
-    if (CONFIG.edgeBehavior === CONFIG.EDGE_BEHAVIORS.WRAP) {
+    if (CONFIG.edgeBehavior == CONFIG.EDGE_BEHAVIORS.WRAP) {
       this.wrap(boid);
-    } else if (CONFIG.edgeBehavior === CONFIG.EDGE_BEHAVIORS.BOUNCE) {
+    } else if (CONFIG.edgeBehavior == CONFIG.EDGE_BEHAVIORS.BOUNCE) {
       this.bounce(boid);
-    } else if (CONFIG.edgeBehavior === CONFIG.EDGE_BEHAVIORS.AVOID) {
+    } else if (CONFIG.edgeBehavior == CONFIG.EDGE_BEHAVIORS.AVOID) {
       this.avoid(boid);
     } else {
       this.wrap(boid);
