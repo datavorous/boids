@@ -64,6 +64,7 @@ class Simulation {
     force.limit(maxStrength);
     boid.applyForce(force);
   }
+
   handleEdges(boid) {
     if (CONFIG.edgeBehavior == CONFIG.EDGE_BEHAVIORS.WRAP) {
       this.wrap(boid);
