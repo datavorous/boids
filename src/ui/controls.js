@@ -3,6 +3,7 @@ class Controls {
     this.paused = false;
     this.vectorsEnabled = false;
     this.simulationSpeed = 1;
+    this.flockCount = CONFIG.flockCount;
     this.maxSpeed = CONFIG.maxSpeed;
     this.wanderAngleDeg = (CONFIG.wanderAngle * 180) / Math.PI;
     
@@ -35,12 +36,23 @@ class Controls {
 
     
 
-    /* this.gui
-      .add(this, "maxForce", 0, 5, 0.1)
-      .name("Max Force")
+    this.gui
+      .add(this, "flockCount", 1, 6, 1)
+      .name("No of Flocks")
       .onChange(() => {
-        boids.forEach((boid) => (boid.maxForce = this.maxForce));
-      });*/
+        let newgrpboids = [];
+        for (let g = 0; g < this.flockCount; g++) {
+          newgrpboids[g] = [];
+        }
+
+        for (let i = 0; i < allBoids.length; i++) {
+          let b = allBoids[i];
+          b.group = i % this.flockCount;
+          b.color = CONFIG.colors[i % this.flockCount];
+          newgrpboids[i % this.flockCount].push(b);
+        }
+        flock.grpboids = newgrpboids;
+      });
 
     this.gui.add(this, "simulationSpeed", 1, 10, 1).name("Time Multiplier");
 
