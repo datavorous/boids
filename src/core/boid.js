@@ -21,8 +21,8 @@ class Boid {
     this.color = colors[group];
   }
 
-  applyForce(force) {
-    this.acceleration.add(force);
+  applyForce(force, weight = 1.0) {
+    this.acceleration.add(force.mult(weight));
   }
 
   update() {
