@@ -7,14 +7,12 @@ class Flock {
     this.flockCount = CONFIG.flockCount;
   }
 
-  reset() {
+  reset(w, h) {
     this.boids.length = 0;
     this.grpboids = [];
 
     for (let i = 0; i < CONFIG.boidCount; i++) {
-      this.boids.push(
-        new Boid(Math.random() * this.width, Math.random() * this.height)
-      );
+      this.boids.push(new Boid(Math.random() * w, Math.random() * h));
     }
   }
 
