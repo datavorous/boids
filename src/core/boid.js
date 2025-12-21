@@ -3,6 +3,11 @@ class Boid {
     this.position = new Vec(x, y);
 
     const angle = Math.random() * Math.PI * 2;
+    const massVariationFactor = CONFIG.massVariation || 30;
+    const baseMass = CONFIG.baseMass || 1;
+
+    this.mass = baseMass + massVariationFactor * Math.random();
+
     this.velocity = new Vec(Math.cos(angle), Math.sin(angle));
     this.acceleration = new Vec(0, 0);
 
@@ -34,7 +39,7 @@ class Boid {
   }
 
   separation(neighbors) {
-    const desiredDist = 30;
+    const desiredDist = CONFIG.separationDistance || 30;
     let steer = new Vec(0, 0);
     let count = 0;
 

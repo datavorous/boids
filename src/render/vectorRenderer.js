@@ -1,6 +1,6 @@
 class VectorRenderer {
   static drawVelocityVector(ctx, boid, scale = 10) {
-    ctx.strokeStyle = "#45475a";
+    ctx.strokeStyle = boid.color;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(boid.position.x, boid.position.y);

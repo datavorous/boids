@@ -19,7 +19,7 @@ for (let i = 0; i < CONFIG.boidCount; i++) {
   grpboids[boid.group].push(boid);
 }
 
-const flock = new Flock(allBoids, grpboids);
+const flock = new Flock(allBoids, grpboids, canvas.width, canvas.height);
 const sim = new Simulation(flock, canvas.width, canvas.height);
 const renderer = new CanvasRenderer(canvas, flock);
 const controls = new Controls();
@@ -30,9 +30,12 @@ function loop() {
     for (let i = 0; i < Math.ceil(speed); i++) {
       sim.step();
     }
-    renderer.render(controls);
-    controls.updateFrame();
   }
+  //refactoring to fix pause trail issue
+
+  renderer.render(controls);
+  controls.updateFrame();
+
   requestAnimationFrame(loop);
 }
 
