@@ -44,4 +44,9 @@ class Vec {
     const dy = a.y - b.y;
     return Math.sqrt(dx * dx + dy * dy);
   }
+
+  normalize() {
+    if (this.mag() == 0) return this;
+    return this.div(this.mag());
+  }
 }
