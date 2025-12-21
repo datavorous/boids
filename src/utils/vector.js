@@ -3,7 +3,7 @@ class Vec {
     this.x = x;
     this.y = y;
   }
-  
+
   mag() {
     return Math.sqrt(this.x * this.x + this.y * this.y);
   }
@@ -43,5 +43,10 @@ class Vec {
     const dx = a.x - b.x;
     const dy = a.y - b.y;
     return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  normalize() {
+    if (this.mag() == 0) return this;
+    return this.div(this.mag());
   }
 }

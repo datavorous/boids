@@ -1,8 +1,13 @@
 class Boid {
-  constructor(x, y) {
+  constructor(x, y, group) {
     this.position = new Vec(x, y);
 
     const angle = Math.random() * Math.PI * 2;
+    const massVariationFactor = CONFIG.massVariation || 30;
+    const baseMass = CONFIG.baseMass || 1;
+
+    this.mass = baseMass + massVariationFactor * Math.random();
+
     this.velocity = new Vec(Math.cos(angle), Math.sin(angle));
     this.acceleration = new Vec(0, 0);
 
@@ -11,8 +16,9 @@ class Boid {
 
     this.trail = [];
 
-    const colors = ["#f38ba8", "#a6e3a1", "#89b4fa"];
-    this.color = colors[Math.floor(Math.random() * colors.length)];
+    const colors = ["#f38ba8", "#a6e3a1", "#89b4fa", "#fddd6bff", "#df68fdff"];
+    this.group = group;
+    this.color = colors[group];
   }
 
   applyForce(force) {
@@ -33,7 +39,7 @@ class Boid {
   }
 
   separation(neighbors) {
-    const desiredDist = 30;
+    const desiredDist = CONFIG.separationDistance || 30;
     let steer = new Vec(0, 0);
     let count = 0;
 
