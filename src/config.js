@@ -10,12 +10,21 @@ const CONFIG = {
   massVariation: 100,
   massBasedClusteringFactor: 2.5,
 
+  get maxMass() {
+    return this.baseMass + this.massVariation;
+  },
+
+  get maxRadius() {
+    return 0.05 * this.maxMass;
+  },
+
   cohesionWeight: 0.1,
   alignmentWeight: 1.0,
   separationWeight: 1.2,
   wanderWeight: 2,
 
   wanderAngle: Math.PI / 3,
+  quadtreeCapacity: 2,
 
   colors: [
     "#f38ba8",

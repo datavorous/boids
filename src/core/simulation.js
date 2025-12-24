@@ -3,6 +3,7 @@ class Simulation {
     this.flock = flock;
     this.width = width;
     this.height = height;
+    this.quad = null;
 
     const validBehaviors = Object.values(CONFIG.EDGE_BEHAVIORS);
     if (!validBehaviors.includes(CONFIG.edgeBehavior))
@@ -80,11 +81,26 @@ class Simulation {
     this.flock.reset(this.width, this.height);
   }
   step() {
-    this.flock.step();
+    this.quad = new Quadtree(
+      new Rectangle(
+        this.width / 2,
+        this.height / 2,
+        this.width / 2,
+        this.height / 2
+      ),
+      CONFIG.quadtreeCapacity
+    );
+    for (let boid of this.flock.boids) {
+      let point = new Point(boid.position.x, boid.position.y, boid);
+      this.quad.insert(point);
+    }
+
+    this.flock.step(this.quad);
 
     for (let boid of this.flock.boids) {
       boid.update();
       this.handleEdges(boid);
     }
+    //console.log(this.quad);
   }
 }

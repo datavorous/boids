@@ -19,6 +19,7 @@ class Boid {
     const colors = ["#f38ba8", "#a6e3a1", "#89b4fa", "#fddd6bff", "#df68fdff"];
     this.group = group;
     this.color = colors[group];
+    this.radius = 0.05 * this.mass; //radius proportional to mass
   }
 
   applyForce(force) {
@@ -133,5 +134,35 @@ class Boid {
     randomForce.limit(this.maxForce);
 
     return randomForce;
+  }
+
+  intersection(other) {
+    if (Vec.dist(this.position, other.position) < this.radius + other.radius) {
+      return true;
+    }
+    return false;
+  }
+
+  collision(other) {
+    const delta = Vec.sub(other.position, this.position);
+    const distance = delta.mag();
+
+    if (distance < 0.01) return;
+
+    const overlap = this.radius + other.radius - distance;
+
+    if (overlap > 0) {
+      console.log(
+        "Collision! overlap:",
+        overlap.toFixed(2),
+        "distance:",
+        distance.toFixed(2)
+      );
+      const direction = new Vec(delta.x / distance, delta.y / distance);
+      const halfOverlap = overlap / 2;
+
+      this.position.sub(Vec.mult(direction, halfOverlap * 5));
+      other.position.add(Vec.mult(direction, halfOverlap * 5));
+    }
   }
 }

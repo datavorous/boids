@@ -31,7 +31,7 @@ class Flock {
     flock.grpboids = newgrpboids;
   }
 
-  step() {
+  step(quad) {
     for (let b of this.boids) {
       const neighbors = this.boids;
       const groupNeighbors = this.grpboids[b.group];
@@ -50,6 +50,22 @@ class Flock {
       b.applyForce(coh);
       b.applyForce(wan);
       b.applyForce(mas);
+      let C = new Circle(
+        b.position.x,
+        b.position.y,
+        b.radius + CONFIG.maxRadius
+      );
+      const others = quad.query(C);
+      for (let p of others) {
+        const other = p.userData;
+        if (
+          other != b &&
+          b.intersection(other) &&
+          this.boids.indexOf(other) > this.boids.indexOf(b)
+        ) {
+          b.collision(other);
+        }
+      }
     }
   }
 }

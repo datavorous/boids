@@ -21,7 +21,7 @@ for (let i = 0; i < CONFIG.boidCount; i++) {
 
 const flock = new Flock(allBoids, grpboids, canvas.width, canvas.height);
 const sim = new Simulation(flock, canvas.width, canvas.height);
-const renderer = new CanvasRenderer(canvas, flock);
+const renderer = new CanvasRenderer(canvas, flock, sim);
 const controls = new Controls();
 
 function loop() {

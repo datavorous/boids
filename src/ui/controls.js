@@ -7,6 +7,7 @@ class Controls {
     this.tempFlockCount = CONFIG.flockCount;
     this.maxSpeed = CONFIG.maxSpeed;
     this.wanderAngleDeg = (CONFIG.wanderAngle * 180) / Math.PI;
+    this.quadtreeEnabled = false;
 
     this.fps = 0;
     this.frameCount = 0;
@@ -36,6 +37,7 @@ class Controls {
     this.gui.add(this, "simulationSpeed", 1, 10, 1).name("Time Multiplier");
 
     this.gui.add(this, "fps").name("FPS").listen();
+    this.gui.add(this, "quadtreeEnabled").name("Show Quadtree");
     this.gui
       .add(
         {
@@ -132,5 +134,8 @@ class Controls {
 
   togglePause() {
     return (this.paused = !this.paused);
+  }
+  shouldDrawQuadtree() {
+    return this.quadtreeEnabled;
   }
 }
