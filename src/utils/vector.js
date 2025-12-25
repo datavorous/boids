@@ -49,4 +49,16 @@ class Vec {
     if (this.mag() == 0) return this;
     return this.div(this.mag());
   }
+
+  static sub(a, b) {
+    return new Vec(a.x - b.x, a.y - b.y);
+  }
+
+  static mult(v, n) {
+    return new Vec(v.x * n, v.y * n);
+  }
+
+  static add(a, b) {
+    return new Vec(a.x + b.x, a.y + b.y);
+  }
 }
