@@ -36,19 +36,19 @@ class Flock {
       const neighbors = this.boids;
       const groupNeighbors = this.grpboids[b.group];
 
-      const sep = b.separation(neighbors).mult(CONFIG.separationWeight);
-      const ali = b.alignment(groupNeighbors).mult(CONFIG.alignmentWeight);
-      const coh = b.cohesion(groupNeighbors).mult(CONFIG.cohesionWeight);
-      const wan = b.wander(CONFIG.wanderAngle).mult(CONFIG.wanderWeight);
+      const sep = b.separation(neighbors);
+      const ali = b.alignment(groupNeighbors);
+      const coh = b.cohesion(groupNeighbors);
+      const wan = b.wander(CONFIG.wanderAngle);
       const mas = b
         .cohesion(neighbors)
         .mult(b.mass / 1000)
         .mult(CONFIG.massBasedClusteringFactor);
 
-      b.applyForce(sep);
-      b.applyForce(ali);
-      b.applyForce(coh);
-      b.applyForce(wan);
+      b.applyForce(sep, CONFIG.separationWeight);
+      b.applyForce(ali, CONFIG.alignmentWeight);
+      b.applyForce(coh, CONFIG.cohesionWeight);
+      b.applyForce(wan, CONFIG.wanderWeight);
       b.applyForce(mas);
       let C = new Circle(
         b.position.x,

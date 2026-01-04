@@ -61,9 +61,9 @@ class Simulation {
     }
 
     // To make it stronger than other forces
-    const maxStrength = boid.maxForce * 2.5;
+    const maxStrength = boid.maxForce;
     force.limit(maxStrength);
-    boid.applyForce(force);
+    boid.applyForce(force, CONFIG.wallRigidness);
   }
 
   handleEdges(boid) {
