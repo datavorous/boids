@@ -22,8 +22,8 @@ class Boid {
     this.radius = 0.05 * this.mass; //radius proportional to mass
   }
 
-  applyForce(force) {
-    this.acceleration.add(force);
+  applyForce(force, weight = 1.0) {
+    this.acceleration.add(force.mult(weight));
   }
 
   update() {

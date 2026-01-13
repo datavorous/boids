@@ -1,7 +1,7 @@
 const CONFIG = {
-  boidCount: 240,
+  boidCount: 100,
   flockCount: 3,
-  maxSpeed: 3.5,
+  maxSpeed: 2.5,
   maxForce: 0.1,
   visualRange: 60,
   separationDistance: 30,
@@ -25,6 +25,8 @@ const CONFIG = {
 
   wanderAngle: Math.PI / 3,
   quadtreeCapacity: 2,
+
+  wallRigidness: 3.5,
 
   colors: [
     "#f38ba8",
